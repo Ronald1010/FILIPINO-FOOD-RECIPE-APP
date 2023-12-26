@@ -1,0 +1,11 @@
+{
+  "appId": "com.pnoyfoodrecipe.app",
+  "appName": "Filipino Food App",
+  "bundledWebRuntime": false,
+  "webDir": "src",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

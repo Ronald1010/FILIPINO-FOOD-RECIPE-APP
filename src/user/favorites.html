@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/login/regestration.css" />
+    <link rel="stylesheet" href="/user/user.css" />
+    <!-- <script type="module" src="/js/user/user.js"></script> -->
+
+    <title>Boostrap Login | Ludiflex</title>
+  </head>
+  <body>
+    <!----------------------- Main Container -------------------------->
+    <!--Go back button -->
+    <div class="container-fluid text-white">
+      <div class="container">
+        <br />
+        <a href="/index.html">
+          <button class="button">
+            <div class="button-box pt-1">
+              <span class="button-elem">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
+                  <path
+                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="button-elem">
+                <svg viewBox="0 0 46 40">
+                  <path
+                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                  ></path>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </a>
+        <!-- Add this button wherever you want in your HTML, such as near the recipe title -->
+        <!-- <button class="text-white text-bg-success"id="favoriteButton" onclick="addToFavorites() ">Add to Favorites</button> -->
+      </div>
+    </div>
+    <!--END button -->
+
+    <!-- Navlink -->
+    <div class="container">
+      <div class="row">
+        <ul class="nav px-5">
+          <!-- Link to Account section -->
+          <li class="nav-item col-4">
+            <a class="nav-link" style="color: #df9006" href="user.html"
+              >Account</a
+            >
+          </li>
+
+          <!-- Link to Favorites section -->
+          <li class="nav-item col-4">
+            <a class="nav-link" href="favorites.html">Favorites</a>
+          </li>
+
+          <!-- Link to Ratings section -->
+          <li class="nav-item col-4">
+            <a class="nav-link" style="color: #df9006" href="#">Ratings</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Navlink End -->
+
+    <div class="container-xl px-4 mt-4">
+      <!-- Account page navigation-->
+      <section id="account-section" class="content-section mt-5">
+        <div class="row">
+          <div class="col">
+            <div class="card mb-4 mb-xl-0" style="border-radius: 10px">
+              <div class="card-header">Your Favorites</div>
+
+              <br />
+
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-4">
+                    <img
+                      src="https://yjzcvrbsaxmfuaeakpzl.supabase.co/storage/v1/object/public/Recipe/Main/Bicolexpress.jpg?t=2023-12-24T18%3A36%3A54.607Z"
+                      class="img-fluid rounded-start p"
+                      width="150px"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h6 class="card-title">Card title</h6>
+                      <p class="card-text" style="font-size: xx-small">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- END OF PROFILE SECTION -->
+    </div>
+  </body>
+</html>
