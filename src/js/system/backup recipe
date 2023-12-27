@@ -1,10 +1,4 @@
-import {
-  doLogout,
-  supabase,
-  successNotification,
-  errorNotification,
-} from "../main";
-btn_logout.onclick = doLogout;
+import { doLogout, supabase } from "../main";
 
 // Function to fetch recipe details based on dish ID
 // Function to fetch recipe details based on dish ID
@@ -101,17 +95,9 @@ function populateRecipeDetails(recipeDetails) {
 // Function to add recipe_id to the favorites table
 async function addToFavorites(recipeId) {
   try {
-    // Retrieve email from localStorage
-    const userEmail = localStorage.getItem("email"); // Replace 'userEmail' with the key used to store the email
-
-    if (!userEmail) {
-      console.error("User email not found in localStorage");
-      return;
-    }
-
     const { data, error } = await supabase
       .from("favorites")
-      .insert([{ recipe_id: recipeId, email: userEmail }]); // Use 'userEmail' here instead of 'email'
+      .insert([{ recipe_id: recipeId }]); // Assuming the column is named recipe_id
 
     if (error) {
       console.error("Error adding to favorites:", error);
@@ -174,64 +160,3 @@ favoriteCheckbox.addEventListener("change", async (event) => {
 });
 
 // Handles Color
-
-// SEARCH FUNCTIONS
-// SEARCH FUNCTIONS
-async function fetchSearchSuggestions(query) {
-  try {
-    const { data: recipes, error } = await supabase
-      .from("recipe")
-      .select("dishes_id, dish_name") // Select 'dishes_id' and 'dish_name' fields for suggestions
-      .ilike("dish_name", `%${query}%`); // Search for dish_names containing the query (case insensitive)
-
-    if (error) {
-      throw error;
-    }
-
-    return recipes; // Return the fetched recipes
-  } catch (error) {
-    console.error("Error fetching search suggestions:", error.message);
-    return [];
-  }
-}
-
-inputBox.addEventListener("input", async function (event) {
-  const query = event.target.value.trim();
-
-  if (query.length > 0) {
-    const suggestions = await fetchSearchSuggestions(query);
-    displaySearchSuggestions(suggestions);
-  } else {
-    searchDropdown.innerHTML = "";
-    searchDropdown.style.display = "none";
-  }
-});
-
-function displaySearchSuggestions(suggestions) {
-  const searchDropdown = document.getElementById("search-dropdown");
-  searchDropdown.innerHTML = "";
-
-  if (suggestions.length > 0) {
-    suggestions.forEach((suggestion) => {
-      const item = document.createElement("a");
-      item.setAttribute("class", "dropdown-item");
-      item.setAttribute(
-        "href",
-        `/Recipe/recipe.html?id=${suggestion.dishes_id}`
-      ); // Use 'dishes_id' in the URL
-      item.textContent = suggestion.dish_name;
-
-      searchDropdown.appendChild(item);
-    });
-
-    searchDropdown.style.display = "block";
-  } else {
-    searchDropdown.style.display = "none";
-  }
-}
-
-function navigateToRecipePage(recipeId) {
-  // Handle the recipe ID, for example, display it in console
-  console.log(`Clicked Recipe ID: ${recipeId}`);
-  // You can perform any action here based on the clicked recipe ID
-}

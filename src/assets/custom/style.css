@@ -84,8 +84,7 @@ hr {
 
 /* navbar */
 .navbar {
-  background-color: rgb(255, 255, 255);
-  background-image: url(/assets/imgs/backgf.jpg);
+  background-image: url(/assets/imgs/flag.jpg);
   background-position: center;
   background-position-x: left;
 
@@ -317,9 +316,14 @@ h2 {
 
 /* button */
 
+.floating-button {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to change the vertical position */
+  right: 20px; /* Adjust this value to change the horizontal position */
+  z-index: 999; /* Set the z-index to ensure it appears on top of other elements */
+}
+
 .button {
-  display: block;
-  position: relative;
   width: 56px;
   height: 56px;
   margin: 0;
@@ -327,6 +331,11 @@ h2 {
   outline: none;
   background-color: #090a0ac0;
   border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
 }
 
 .button:before,
@@ -378,8 +387,8 @@ h2 {
   display: block;
   width: 20px;
   height: 20px;
-  margin: 17px 18px 0 18px;
-  transform: rotate(180deg);
+  margin: 9px 18px 0 14px;
+
   fill: #f0eeef;
 }
 

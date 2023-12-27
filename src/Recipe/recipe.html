@@ -8,7 +8,11 @@
     <!--custom css-->
     <link rel="stylesheet" href="/assets/custom/style.css" />
     <script type="module" src="/js/system/recipe.js"></script>
+    <!-- <script src="/js/system/index.js" type="module"></script> -->
   </head>
+  <!-- Alert Notification -->
+  <div class="alert alert-success d-none" role="alert"></div>
+  <div class="alert alert-danger d-none" role="alert"></div>
   <body>
     <!-- Navbar -->
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -20,7 +24,6 @@
             alt=""
             width="50px"
         /></a>
-
         <div class="inputBox_container">
           <svg
             class="search_icon"
@@ -32,7 +35,6 @@
               d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"
             ></path>
           </svg>
-
           <input
             class="inputBox"
             id="inputBox"
@@ -41,20 +43,8 @@
           />
         </div>
 
-        <!-- <div class="d-flex  "> -->
-        <!-- <form class="d-flex mb-2 mb-lg-0"> -->
-        <!-- <input -->
-        <!-- id="form-control" -->
-        <!-- class="form-control me-2" -->
-        <!-- type="search" -->
-        <!-- placeholder="Search...." -->
-        <!-- aria-label="Search" -->
-        <!-- /> -->
-        <!-- <button class="btn btn-outline-dark" type="submit"> -->
-        <!-- Search -->
-        <!-- </button> -->
-        <!-- </form> -->
-        <!-- </div> -->
+        <!-- 
+        <div class="dropdown" id="search-dropdown"></div> -->
 
         <button
           class="navbar-toggler"
@@ -72,10 +62,12 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- Your navigation links here -->
             <li class="nav-item">
-              <a class="nav-link scrollto active" href="/index.html">Home</a>
+              <a class="nav-link scrollto active" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login/login.html">Login</a>
+              <a class="nav-link" href="#" id="btn_logout">
+                <button class="btn btn-primary w-100">Logout</button>
+              </a>
             </li>
             <li>
               <!-- Search Bar -->
@@ -84,40 +76,14 @@
           </ul>
         </div>
       </div>
+      <div class="row px-5 mx-5">
+        <div id="search-dropdown" class="text-white"></div>
+      </div>
     </nav>
     <!-- button -->
-    <div class="container-fluid text-white">
-      <div class="container">
-        <br />
-        <a href="/index.html">
-          <button class="button">
-            <div class="button-box pt-1">
-              <span class="button-elem">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
-                  <path
-                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="button-elem">
-                <svg viewBox="0 0 46 40">
-                  <path
-                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                  ></path>
-                </svg>
-              </span>
-            </div>
-          </button>
-        </a>
-        <!-- Add this button wherever you want in your HTML, such as near the recipe title -->
-        <!-- <button class="text-white text-bg-success"id="favoriteButton" onclick="addToFavorites() ">Add to Favorites</button> -->
-      </div>
-      <div class="col-4">
-        <!-- <button class="text-white text-bg-success">  -->
-        <!-- <a class="float-end text-white" href="/index.html">Go Back</a>  -->
-        <!-- </button>  -->
-      </div>
-    </div>
+
+    <!-- Add this button wherever you want in your HTML, such as near the recipe title -->
+    <!-- <button class="text-white text-bg-success"id="favoriteButton" onclick="addToFavorites() ">Add to Favorites</button> -->
 
     <!-- buttons end -->
     <div id="recipeinfo">
@@ -244,6 +210,29 @@
             <input type="file" id="file" />
           </label>
         </div>
+        <a href="/index.html" class="floating-button">
+          <button class="button">
+            <div class="button-box pt-1">
+              <span class="button-elem text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="27"
+                  height="27"
+                  fill="currentColor"
+                  class="bi bi-house-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"
+                  />
+                  <path
+                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </button>
+        </a>
 
         <br />
         <br />

@@ -22,7 +22,6 @@
             alt=""
             width="50px"
         /></a>
-
         <div class="inputBox_container">
           <svg
             class="search_icon"
@@ -34,7 +33,6 @@
               d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"
             ></path>
           </svg>
-
           <input
             class="inputBox"
             id="inputBox"
@@ -42,6 +40,9 @@
             placeholder="Search For Recipe"
           />
         </div>
+
+        <!-- 
+        <div class="dropdown" id="search-dropdown"></div> -->
 
         <button
           class="navbar-toggler"
@@ -73,6 +74,9 @@
           </ul>
         </div>
       </div>
+      <div class="row px-5 mx-5">
+        <div id="search-dropdown" class="text-white"></div>
+      </div>
     </nav>
     <!-- Alert Notification -->
     <div class="alert alert-success d-none" role="alert"></div>
@@ -87,10 +91,6 @@
     <!-- end marquee -->
     <div class="container-fluid">
       <div class="container text-center">
-        <!-- End Searh Bar -->
-
-        <br />
-        <br />
         <br />
         <br />
 
@@ -99,8 +99,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#mainDishes"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="mainDishes"
@@ -109,7 +108,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="mainDishes"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="mainDishes"
+          ></div>
         </div>
         <!--  End Main Dish-->
 
@@ -118,8 +120,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#noodleDishes"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="noodleDishes"
@@ -128,7 +129,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="noodleDishes"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="noodleDishes"
+          ></div>
         </div>
         <!-- End Noodle Dishes -->
         <!-- Appetizers and Snacks -->
@@ -136,8 +140,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#snacksDishes"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="snacksDishes"
@@ -146,7 +149,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="snacksDishes"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="snacksDishes"
+          ></div>
         </div>
         <!-- End of Appetizers and Snacks -->
 
@@ -155,8 +161,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#riceDishes"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="riceDishes"
@@ -165,7 +170,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="riceDishes"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="riceDishes"
+          ></div>
         </div>
         <!-- End Rise Dishes -->
 
@@ -174,8 +182,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#soupDishes"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="soupDishes"
@@ -184,7 +191,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="soupDishes"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="soupDishes"
+          ></div>
         </div>
         <!-- End of Soup Dishes -->
 
@@ -193,8 +203,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#dissertSweet"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="dissertSweet"
@@ -203,7 +212,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="dissertSweet"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="dissertSweet"
+          ></div>
         </div>
         <!-- End of Desert and Sweets -->
 
@@ -212,8 +224,7 @@
           <div class="col-12">
             <p
               class="category-text"
-              data-bs-toggle="collapse"
-              href="#beverages"
+              id="collapseButton"
               role="button"
               aria-expanded="false"
               aria-controls="beverages"
@@ -222,7 +233,10 @@
             </p>
           </div>
 
-          <div class="row collapse text-center" id="beverages"></div>
+          <div
+            class="row collapse text-center dishesCollapse"
+            id="beverages"
+          ></div>
         </div>
         <br />
         <br />
@@ -232,8 +246,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script type="module" src="./assets/js/bootstrap.bundle.min.js"></script>
-
-    <script type="module" src="/assets/custom/main.js"></script>
+    <!-- <script type="module" src="./assets/js/bootstrap.bundle.min.js"></script> -->
   </body>
 </html>

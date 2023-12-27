@@ -155,3 +155,86 @@ function createDishElement(dish) {
 document.addEventListener("DOMContentLoaded", () => {
   fetchAndDisplayDishes();
 });
+
+// Collapse Dishes
+// Get the button element
+// Get all elements with the class "category-text"
+const categoryButtons = document.querySelectorAll(".category-text");
+
+// Add event listeners to all category buttons
+categoryButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const sectionId = this.getAttribute("aria-controls");
+    const section = document.getElementById(sectionId);
+
+    // Toggle the collapse class on the respective dish section
+    if (section.classList.contains("show")) {
+      section.classList.remove("show");
+      this.setAttribute("aria-expanded", "false");
+    } else {
+      section.classList.add("show");
+      this.setAttribute("aria-expanded", "true");
+    }
+  });
+});
+
+// SEARCH FUNCTIONS
+// SEARCH FUNCTIONS
+async function fetchSearchSuggestions(query) {
+  try {
+    const { data: recipes, error } = await supabase
+      .from("recipe")
+      .select("dishes_id, dish_name") // Select 'dishes_id' and 'dish_name' fields for suggestions
+      .ilike("dish_name", `%${query}%`); // Search for dish_names containing the query (case insensitive)
+
+    if (error) {
+      throw error;
+    }
+
+    return recipes; // Return the fetched recipes
+  } catch (error) {
+    console.error("Error fetching search suggestions:", error.message);
+    return [];
+  }
+}
+
+inputBox.addEventListener("input", async function (event) {
+  const query = event.target.value.trim();
+
+  if (query.length > 0) {
+    const suggestions = await fetchSearchSuggestions(query);
+    displaySearchSuggestions(suggestions);
+  } else {
+    searchDropdown.innerHTML = "";
+    searchDropdown.style.display = "none";
+  }
+});
+
+function displaySearchSuggestions(suggestions) {
+  const searchDropdown = document.getElementById("search-dropdown");
+  searchDropdown.innerHTML = "";
+
+  if (suggestions.length > 0) {
+    suggestions.forEach((suggestion) => {
+      const item = document.createElement("a");
+      item.setAttribute("class", "dropdown-item");
+      item.setAttribute(
+        "href",
+        `/Recipe/recipe.html?id=${suggestion.dishes_id}`
+      ); // Use 'dishes_id' in the URL
+      item.textContent = suggestion.dish_name;
+
+      searchDropdown.appendChild(item);
+    });
+
+    searchDropdown.style.display = "block";
+  } else {
+    searchDropdown.style.display = "none";
+  }
+}
+
+function navigateToRecipePage(recipeId) {
+  // Handle the recipe ID, for example, display it in console
+  console.log(`Clicked Recipe ID: ${recipeId}`);
+  // You can perform any action here based on the clicked recipe ID
+}

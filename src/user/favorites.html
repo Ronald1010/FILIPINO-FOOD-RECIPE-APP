@@ -7,36 +7,86 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/login/regestration.css" />
     <link rel="stylesheet" href="/user/user.css" />
+    <script type="module" src="/js/system/favorites.js"></script>
+
     <!-- <script type="module" src="/js/user/user.js"></script> -->
 
     <title>Boostrap Login | Ludiflex</title>
   </head>
   <body>
+    <!-- navbar -->
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid pt-2">
+        <a href="/user/user.html"
+          ><img
+            id="navuser"
+            src="/assets/images/index/icons8-user-100.png"
+            alt=""
+            width="50px"
+        /></a>
+        <div class="inputBox_container">
+          <svg
+            class="search_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            alt="search icon"
+          >
+            <path
+              d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"
+            ></path>
+          </svg>
+          <input
+            class="inputBox"
+            id="inputBox"
+            type="text"
+            placeholder="Search For Recipe"
+          />
+        </div>
+
+        <!-- 
+        <div class="dropdown" id="search-dropdown"></div> -->
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Your navigation links here -->
+            <li class="nav-item">
+              <a class="nav-link scrollto active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="btn_logout">
+                <button class="btn btn-primary w-100">Logout</button>
+              </a>
+            </li>
+            <li>
+              <!-- Search Bar -->
+            </li>
+            <!-- ... other navigation links ... -->
+          </ul>
+        </div>
+      </div>
+      <div class="row px-5 mx-5">
+        <div id="search-dropdown" class="text-white"></div>
+      </div>
+    </nav>
+    <!-- End NavbaR -->
     <!----------------------- Main Container -------------------------->
     <!--Go back button -->
     <div class="container-fluid text-white">
       <div class="container">
         <br />
-        <a href="/index.html">
-          <button class="button">
-            <div class="button-box pt-1">
-              <span class="button-elem">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
-                  <path
-                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="button-elem">
-                <svg viewBox="0 0 46 40">
-                  <path
-                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                  ></path>
-                </svg>
-              </span>
-            </div>
-          </button>
-        </a>
+
         <!-- Add this button wherever you want in your HTML, such as near the recipe title -->
         <!-- <button class="text-white text-bg-success"id="favoriteButton" onclick="addToFavorites() ">Add to Favorites</button> -->
       </div>
@@ -68,41 +118,46 @@
     </div>
     <!-- Navlink End -->
 
-    <div class="container-xl px-4 mt-4">
+    <div class="container-xl px-4 mt-3">
+      <!-- Alert Notification -->
+      <div class="alert alert-success d-none" role="alert"></div>
+      <div class="alert alert-danger d-none" role="alert"></div>
       <!-- Account page navigation-->
-      <section id="account-section" class="content-section mt-5">
+      <section id="account-section" class="content-section">
         <div class="row">
           <div class="col">
             <div class="card mb-4 mb-xl-0" style="border-radius: 10px">
               <div class="card-header">Your Favorites</div>
 
               <br />
-
-              <div class="card mb-3">
-                <div class="row g-0">
-                  <div class="col-4">
-                    <img
-                      src="https://yjzcvrbsaxmfuaeakpzl.supabase.co/storage/v1/object/public/Recipe/Main/Bicolexpress.jpg?t=2023-12-24T18%3A36%3A54.607Z"
-                      class="img-fluid rounded-start p"
-                      width="150px"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="col-8">
-                    <div class="card-body">
-                      <h6 class="card-title">Card title</h6>
-                      <p class="card-text" style="font-size: xx-small">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- CARDS ROW -->
+              <div class="row" id="cardsFavorite"></div>
             </div>
           </div>
         </div>
+        <a href="/index.html" class="floating-button">
+          <button class="button">
+            <div class="button-box pt-1">
+              <span class="button-elem text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="27"
+                  height="27"
+                  fill="currentColor"
+                  class="bi bi-house-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"
+                  />
+                  <path
+                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </button>
+        </a>
       </section>
 
       <!-- END OF PROFILE SECTION -->

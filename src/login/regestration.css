@@ -101,16 +101,26 @@ a {
 
 /* button */
 
+.floating-button {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to change the vertical position */
+  right: 20px; /* Adjust this value to change the horizontal position */
+  z-index: 999; /* Set the z-index to ensure it appears on top of other elements */
+}
+
 .button {
-  display: block;
-  position: relative;
   width: 56px;
   height: 56px;
   margin: 0;
   overflow: hidden;
   outline: none;
-  background-color: transparent;
-  border: 0;
+  background-color: #090a0ac0;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
 }
 
 .button:before,
@@ -162,8 +172,8 @@ a {
   display: block;
   width: 20px;
   height: 20px;
-  margin: 17px 18px 0 18px;
-  transform: rotate(180deg);
+  margin: 9px 18px 0 14px;
+
   fill: #f0eeef;
 }
 
@@ -171,9 +181,4 @@ a {
 .button:focus .button-box {
   transition: 0.4s;
   transform: translateX(-56px);
-}
-
-/* border */
-#border {
-  color: #cda45e;
 }

@@ -196,3 +196,10 @@ body {
   }
 }
 /* SEARCH BAR */
+/* Adjust input field size for devices with a maximum width of 802px */
+@media (max-width: 802px) {
+  .form-control {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 300px; /* Set a maximum width if required */
+  }
+}
