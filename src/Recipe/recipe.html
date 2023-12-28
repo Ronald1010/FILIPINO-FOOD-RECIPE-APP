@@ -8,12 +8,15 @@
     <!--custom css-->
     <link rel="stylesheet" href="/assets/custom/style.css" />
     <script type="module" src="/js/system/recipe.js"></script>
+    <script type="module" src="/js/system/comments.js"></script>
+
     <!-- <script src="/js/system/index.js" type="module"></script> -->
   </head>
-  <!-- Alert Notification -->
-  <div class="alert alert-success d-none" role="alert"></div>
-  <div class="alert alert-danger d-none" role="alert"></div>
+
   <body>
+    <!-- Alert Notification -->
+    <div class="alert alert-success d-none" role="alert"></div>
+    <div class="alert alert-danger d-none" role="alert"></div>
     <!-- Navbar -->
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid pt-2">
@@ -90,7 +93,7 @@
       <div class="col-sm" id="recipe">
         <div id="DishName">
           <br />
-          <h1 class="ebs pb-3 text-center">
+          <h1 class="ebs text-center">
             <b id="dishNameElement"></b>
 
             <label class="ui-like">
@@ -136,7 +139,7 @@
                 <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
                   <p class="fst-italic px-3"></p>
                   <div id="ingredients">
-                    <h2><b>Ingredients:</b></h2>
+                    <h3><b>Ingredients:</b></h3>
                     <ul class="px-4"></ul>
                   </div>
                   <h2><b>Procedures:</b></h2>
@@ -151,88 +154,109 @@
 
       <br />
 
-      <div class="container1 text-center">
-        <div class="container-fluid pl-5 text-center">
-          <div id="comments-container  " class="col-12">
+      <div class="container1">
+        <div class="container-fluid pl-5">
+          <div id="comments-container" class="col-12 text-center">
             <h2><b>Comments and Ratings</b></h2>
             <div id="comments-list"></div>
+            <div class="row">
+              <form id="comments-form">
+                <label for="comment"></label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  placeholder="Type comment"
+                  rows="2"
+                  cols="36"
+                  required
+                ></textarea>
+                <label for="file" class="file-upload-label">
+                  <div class="icon">
+                    <!-- You can add an icon or text here if needed -->
+                  </div>
+                  <input type="file" id="file" class="file-upload-input mx-5" />
+                </label>
 
-            <form id="comment-form">
-              <label for="comment"></label>
-              <textarea
-                id="comment"
-                name="comment"
-                rows="4"
-                cols="35"
-                required
-              ></textarea>
+                <label for="rating"></label>
+                <select id="rating" name="rating" required>
+                  <option value="1">⭐</option>
+                  <option value="2">⭐⭐</option>
+                  <option value="3">⭐⭐⭐</option>
+                  <option value="4">⭐⭐⭐⭐</option>
+                  <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
 
-              <label for="rating"></label>
-              <select id="rating" name="rating" required>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-              </select>
-
-              <button type="button" onclick="submitComment()">Submit</button>
-            </form>
+                <button
+                  id="commentButton"
+                  type="submit"
+                  class="btn btn-primary text-white"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
           <br />
           <br />
-          <label class="custum-file-upload" for="file">
-            <div class="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill=""
-                viewBox="0 0 24 24"
+
+          <!-- Comments  -->
+          <div class="row mb-5 pb-5">
+            <div class="col">
+              <div
+                class="mb-4 mt-2 mb-xl-0 bg-white text-dark"
+                style="border-radius: 10px"
               >
-                <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                <g
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
-                  id="SVGRepo_tracerCarrier"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    fill=""
-                    d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  ></path>
-                </g>
-              </svg>
+                <div class="card-header text-dark text-center">Comments</div>
+
+                <br />
+                <!-- CARDS ROW -->
+                <div class="row" id="comment_section">
+                  <div class="col text-center" style="font-style: italic">
+                    <h4>Empty</h4>
+                  </div>
+                  <p class="text-dark px-5" id="comment">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente, voluptatum.
+                  </p>
+                  <img
+                    class="px-5"
+                    id="image_path"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/800px-Good_Food_Display_-_NCI_Visuals_Online.jpg"
+                    width="70px"
+                    alt=""
+                  />
+                </div>
+              </div>
             </div>
-            <div class="text">
-              <span>Click to upload image</span>
-            </div>
-            <input type="file" id="file" />
-          </label>
+          </div>
+
+          <!-- FLOATING BUTTON -->
+          <a href="/index.html" class="floating-button">
+            <button class="button">
+              <div class="button-box pt-1">
+                <span class="button-elem text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="27"
+                    height="27"
+                    fill="currentColor"
+                    class="bi bi-house-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"
+                    />
+                    <path
+                      d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </button>
+          </a>
+          <!-- END FLOATING BUTTOn -->
         </div>
-        <a href="/index.html" class="floating-button">
-          <button class="button">
-            <div class="button-box pt-1">
-              <span class="button-elem text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="27"
-                  height="27"
-                  fill="currentColor"
-                  class="bi bi-house-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"
-                  />
-                  <path
-                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
-                  />
-                </svg>
-              </span>
-            </div>
-          </button>
-        </a>
+        <!-- End Comments Section -->
 
         <br />
         <br />
@@ -240,6 +264,6 @@
     </div>
 
     <script type="module" src="/js/system/favorites.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- <script type="module" src="/assets/js/bootstrap.bundle.min.js"></script> -->
   </body>
 </html>
